@@ -3,6 +3,7 @@ import OhmCalculator from './OhmCalculator';
 import ResistanceCalculator from './ResistanceCalculator';
 import KirchhoffCalculator from './KirchhoffCalculator';
 import PowerDissipationCalculator from './PowerDissipationCalculator';
+import ResistivityCalculator from './ResistivityCalculator';
 
 function Tabs() {
   const [activeTab, setActiveTab] = useState('ohm');
@@ -12,12 +13,14 @@ function Tabs() {
       <div className="tab-buttons">
         <button onClick={() => setActiveTab('ohm')}>Lei de Ohm</button>
         <button onClick={() => setActiveTab('resistance')}>Resistência</button>
+        <button onClick={() => setActiveTab('resistivity')}>Resistividade</button>
         <button onClick={() => setActiveTab('kirchhoff')}>Kirchhoff</button>
         <button onClick={() => setActiveTab('power')}>Potência Dissipada</button>
       </div>
       <div className="tab-content">
         {activeTab === 'ohm' && <OhmCalculator />}
         {activeTab === 'resistance' && <ResistanceCalculator />}
+        {activeTab === 'resistivity' && <ResistivityCalculator />}
         {activeTab === 'kirchhoff' && <KirchhoffCalculator />}
         {activeTab === 'power' && <PowerDissipationCalculator />}
       </div>

@@ -7,7 +7,6 @@ function App() {
   const [resistance, setResistance] = useState('');
   const [result, setResult] = useState('');
 
-  // Função para calcular o resultado
   const calculateValues = () => {
     let resultText = '';
     if (voltage && current) {
@@ -28,7 +27,6 @@ function App() {
     setResult(resultText);
   };
 
-  // Hook para calcular valores sempre que um dos inputs mudar
   useEffect(() => {
     calculateValues();
   }, [voltage, current, resistance]);
@@ -71,20 +69,6 @@ function App() {
           A Lei de Ohm é expressa por: <br />
           <strong style={{ fontSize: '24px', fontWeight: 'bold', color: '#007bff' }}>
             V = I × R
-          </strong>
-        </p>
-        <p>
-          Onde: <br />
-          <strong>V</strong> é a tensão (voltagem) em volts <br />
-          <strong>I</strong> é a corrente em amperes <br />
-          <strong>R</strong> é a resistência em ohms
-        </p>
-        <p>
-          Atual fórmula com valores: <br />
-          <strong>
-            {voltage && current ? `V = ${voltage} V` : ''}
-            {voltage && resistance ? `V = ${voltage} V` : ''}
-            {current && resistance ? `V = I × R = ${current} A × ${resistance} Ω = ${current * resistance} V` : ''}
           </strong>
         </p>
       </div>
