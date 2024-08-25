@@ -26,7 +26,12 @@ function KirchhoffCalculator() {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '450px',
+        }}>
           <label>Tensões (separadas por vírgula): </label>
           <input
             type="text"
@@ -34,7 +39,12 @@ function KirchhoffCalculator() {
             onChange={(e) => setVoltages(e.target.value)}
           />
         </div>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '450px',
+        }}>
           <label>Correntes (separadas por vírgula): </label>
           <input
             type="text"

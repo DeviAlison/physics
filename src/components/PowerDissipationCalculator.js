@@ -49,7 +49,12 @@ function PowerDissipationCalculator() {
         }}
       >
         <h2>Calculadora de Potência Dissipada</h2>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '350px',
+        }}>
           <label>Tensão (V): </label>
           <input
             type="number"
@@ -63,7 +68,12 @@ function PowerDissipationCalculator() {
             disabled={current && resistance && !calculationDone}
           />
         </div>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '350px',
+        }}>
           <label>Corrente (I): </label>
           <input
             type="number"
@@ -77,7 +87,12 @@ function PowerDissipationCalculator() {
             disabled={voltage && resistance && !calculationDone}
           />
         </div>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '350px',
+        }}>
           <label>Resistência (R): </label>
           <input
             type="number"

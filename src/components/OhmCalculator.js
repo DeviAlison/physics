@@ -67,7 +67,12 @@ function App() {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '350px',
+        }}>
           <label>Tensão (V): </label>
           <input
             type="number"
@@ -81,7 +86,12 @@ function App() {
             disabled={current && resistance && !hasAllValues}
           />
         </div>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '350px',
+        }}>
           <label>Corrente (I): </label>
           <input
             type="number"
@@ -95,7 +105,12 @@ function App() {
             disabled={voltage && resistance && !hasAllValues}
           />
         </div>
-        <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '350px',
+        }}>
           <label>Resistência (R): </label>
           <input
             type="number"
