@@ -181,7 +181,7 @@ function App() {
         </p>
       </div>
       <div>
-        <h2>Dicas:</h2>
+        {hints.length > 0 && <h2>Dicas:</h2>}
         {
           hints.map((hint, index) => (
             <p key={index}>{hint}</p>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function ResistanceCalculator() {
   const [resistances, setResistances] = useState('');
@@ -18,6 +18,21 @@ function ResistanceCalculator() {
 
     setResult(`Resistência ${type === 'serie' ? 'equivalente' : 'total'}: ${totalResistance} ohms`);
   };
+
+  const [hints, setHints] = useState([]);
+
+  const generateHints = () => {
+    if (type === 'serie') {
+      setHints(['Para calcular a resistência total em série, basta somar todos os valores.']);
+    }
+    if (type === 'paralelo') {
+      setHints(['Para calcular a resistência total em paralelo, inverta todos os valores, some-os e inverta o resultado.']);
+    }
+  }
+
+  useEffect(() => {
+    generateHints();
+  }, [type]);
 
   return (
     <div>
@@ -57,6 +72,14 @@ function ResistanceCalculator() {
       <div>
         <h3>Resultado:</h3>
         <p>{result}</p>
+      </div>
+      <div>
+        {hints.length > 0 && <h2>Dicas:</h2>}
+        {
+          hints.map((hint, index) => (
+            <p key={index}>{hint}</p>
+          ))
+        }
       </div>
     </div>
   );

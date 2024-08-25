@@ -36,6 +36,28 @@ function PowerDissipationCalculator() {
     setCalculationDone(false);
   }, [voltage, current, resistance]);
 
+  const [hints, setHints] = useState([]);
+
+  const generateHints = () => {
+    const hints = [];
+    if (voltage) {
+      hints.push('Se você sabe a tensão e a corrente, multiplique-as para obter a potência.');
+    }
+
+    if (current) {
+      hints.push('Se você sabe a corrente e a resistência, calcule a corrente ao quadrado e multiplique pela resistência.');
+    }
+
+    if (resistance) {
+      hints.push('Se você sabe a tensão e a resistência, divida a tensão ao quadrado pela resistência.');
+    }
+    setHints(hints);
+  }
+
+  useEffect(() => {
+    generateHints();
+  }, [voltage, current, resistance]);
+
   return (
     <div>
       <div
@@ -206,6 +228,12 @@ function PowerDissipationCalculator() {
           </div>
         </strong>
       </div>
+      {hints.length > 0 && <h2>Dicas: </h2>}
+      {
+        hints.map((hint, index) => (
+          <p key={index}>{hint}</p>
+        ))
+      }
     </div>
   );
 }
