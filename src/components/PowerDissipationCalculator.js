@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function PowerDissipationCalculator() {
   const [voltage, setVoltage] = useState('');
@@ -19,6 +19,7 @@ function PowerDissipationCalculator() {
     } else {
       setResult('Por favor, insira dois valores para calcular a potência.');
     }
+    setCalculationDone(true);
   };
 
   const clearAll = () => {
@@ -26,7 +27,14 @@ function PowerDissipationCalculator() {
     setCurrent('');
     setResistance('');
     setResult('');
+    setCalculationDone(false);
   }
+
+  const [calculationDone, setCalculationDone] = useState(false);
+
+  useEffect(() => {
+    setCalculationDone(false);
+  }, [voltage, current, resistance]);
 
   return (
     <div>
@@ -36,7 +44,13 @@ function PowerDissipationCalculator() {
         <input
           type="number"
           value={voltage}
-          onChange={(e) => setVoltage(e.target.value)}
+          onChange={(e) => {
+            if (calculationDone) {
+              clearAll();
+            }
+            setVoltage(e.target.value);
+          }}
+          disabled={current && resistance && !calculationDone}
         />
       </div>
       <div>
@@ -44,7 +58,13 @@ function PowerDissipationCalculator() {
         <input
           type="number"
           value={current}
-          onChange={(e) => setCurrent(e.target.value)}
+          onChange={(e) => {
+            if (calculationDone) {
+              clearAll();
+            }
+            setCurrent(e.target.value);
+          }}
+          disabled={voltage && resistance && !calculationDone}
         />
       </div>
       <div>
@@ -52,7 +72,13 @@ function PowerDissipationCalculator() {
         <input
           type="number"
           value={resistance}
-          onChange={(e) => setResistance(e.target.value)}
+          onChange={(e) => {
+            if (calculationDone) {
+              clearAll();
+            }
+            setResistance(e.target.value);
+          }}
+          disabled={voltage && current && !calculationDone}
         />
       </div>
       <button onClick={calculatePower}>Calcular</button>
