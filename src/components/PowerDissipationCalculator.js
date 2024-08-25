@@ -38,51 +38,77 @@ function PowerDissipationCalculator() {
 
   return (
     <div>
-      <h2>Calculadora de Potência Dissipada</h2>
-      <div>
-        <label>Tensão (V): </label>
-        <input
-          type="number"
-          value={voltage}
-          onChange={(e) => {
-            if (calculationDone) {
-              clearAll();
-            }
-            setVoltage(e.target.value);
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          marginBottom: '1rem',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <h2>Calculadora de Potência Dissipada</h2>
+        <div>
+          <label>Tensão (V): </label>
+          <input
+            type="number"
+            value={voltage}
+            onChange={(e) => {
+              if (calculationDone) {
+                clearAll();
+              }
+              setVoltage(e.target.value);
+            }}
+            disabled={current && resistance && !calculationDone}
+          />
+        </div>
+        <div>
+          <label>Corrente (I): </label>
+          <input
+            type="number"
+            value={current}
+            onChange={(e) => {
+              if (calculationDone) {
+                clearAll();
+              }
+              setCurrent(e.target.value);
+            }}
+            disabled={voltage && resistance && !calculationDone}
+          />
+        </div>
+        <div>
+          <label>Resistência (R): </label>
+          <input
+            type="number"
+            value={resistance}
+            onChange={(e) => {
+              if (calculationDone) {
+                clearAll();
+              }
+              setResistance(e.target.value);
+            }}
+            disabled={voltage && current && !calculationDone}
+          />
+        </div>
+        <div style={{
+          display: 'flex',
+          gap: '10px',
+          width: '100px',
+          justifyContent: 'space-between',
+        }}>
+          <button
+          style={{
+            cursor: 'pointer',
           }}
-          disabled={current && resistance && !calculationDone}
-        />
-      </div>
-      <div>
-        <label>Corrente (I): </label>
-        <input
-          type="number"
-          value={current}
-          onChange={(e) => {
-            if (calculationDone) {
-              clearAll();
-            }
-            setCurrent(e.target.value);
+          onClick={calculatePower}>Calcular</button>
+          <button
+          style={{
+            cursor: 'pointer',
           }}
-          disabled={voltage && resistance && !calculationDone}
-        />
+          onClick={clearAll}>Limpar</button>
+        </div>
       </div>
-      <div>
-        <label>Resistência (R): </label>
-        <input
-          type="number"
-          value={resistance}
-          onChange={(e) => {
-            if (calculationDone) {
-              clearAll();
-            }
-            setResistance(e.target.value);
-          }}
-          disabled={voltage && current && !calculationDone}
-        />
-      </div>
-      <button onClick={calculatePower}>Calcular</button>
-      <button onClick={clearAll}>Limpar</button>
       <div>
         <h3>Resultado:</h3>
         <p>{result}</p>

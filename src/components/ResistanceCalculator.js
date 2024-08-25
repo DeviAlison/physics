@@ -22,22 +22,38 @@ function ResistanceCalculator() {
   return (
     <div>
       <h2>Calculadora de Resistência</h2>
-      <div>
-        <label>Resistores (separados por vírgula): </label>
-        <input
-          type="text"
-          value={resistances}
-          onChange={(e) => setResistances(e.target.value)}
-        />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          marginBottom: '1rem',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div>
+          <label>Resistores (separados por vírgula): </label>
+          <input
+            type="text"
+            value={resistances}
+            onChange={(e) => setResistances(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Tipo: </label>
+          <select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="serie">Série</option>
+            <option value="paralelo">Paralelo</option>
+          </select>
+        </div>
+        <button
+          style={{
+            cursor: 'pointer',
+            width: '100px',
+          }}
+        onClick={calculateResistance}>Calcular</button>
       </div>
-      <div>
-        <label>Tipo: </label>
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="serie">Série</option>
-          <option value="paralelo">Paralelo</option>
-        </select>
-      </div>
-      <button onClick={calculateResistance}>Calcular</button>
       <div>
         <h3>Resultado:</h3>
         <p>{result}</p>

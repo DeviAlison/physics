@@ -18,23 +18,37 @@ function KirchhoffCalculator() {
   return (
     <div>
       <h2>Calculadora de Kirchhoff</h2>
-      <div>
-        <label>Tensões (separadas por vírgula): </label>
-        <input
-          type="text"
-          value={voltages}
-          onChange={(e) => setVoltages(e.target.value)}
-        />
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        marginBottom: '1rem',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <div>
+          <label>Tensões (separadas por vírgula): </label>
+          <input
+            type="text"
+            value={voltages}
+            onChange={(e) => setVoltages(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Correntes (separadas por vírgula): </label>
+          <input
+            type="text"
+            value={currents}
+            onChange={(e) => setCurrents(e.target.value)}
+          />
+        </div>
+        <button
+        style={{
+          cursor: 'pointer',
+          width: '100px',
+        }}
+        onClick={calculateKirchhoff}>Calcular</button>
       </div>
-      <div>
-        <label>Correntes (separadas por vírgula): </label>
-        <input
-          type="text"
-          value={currents}
-          onChange={(e) => setCurrents(e.target.value)}
-        />
-      </div>
-      <button onClick={calculateKirchhoff}>Calcular</button>
       <div>
         <h3>Resultado:</h3>
         <p>{result}</p>
