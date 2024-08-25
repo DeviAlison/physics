@@ -21,6 +21,13 @@ function PowerDissipationCalculator() {
     }
   };
 
+  const clearAll = () => {
+    setVoltage('');
+    setCurrent('');
+    setResistance('');
+    setResult('');
+  }
+
   return (
     <div>
       <h2>Calculadora de Potência Dissipada</h2>
@@ -49,6 +56,7 @@ function PowerDissipationCalculator() {
         />
       </div>
       <button onClick={calculatePower}>Calcular</button>
+      <button onClick={clearAll}>Limpar</button>
       <div>
         <h3>Resultado:</h3>
         <p>{result}</p>
