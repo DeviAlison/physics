@@ -34,65 +34,100 @@ function App() {
     setResult('');
   }
 
-  const hasAllValues = voltage && current && resistance;
+  const [hints, setHints] = useState([]);
 
-  const [tips, setTips] = useState([]);
-
-  const generateTips = () => {
-    // if ()
+  const generateHints = () => {
+    const hints = [];
+    if (!voltage) {
+      hints.push('Se você não sabe a tensão, multiplique a corrente pela resistência.');
+    }
+    if (!current) {
+      hints.push('Se você não sabe a corrente, divida a tensão pela resistência.');
+    }
+    if (!resistance) {
+      hints.push('Se você não sabe a resistência, divida a tensão pela corrente.');
+    }
+    setHints(hints);
   }
 
-  // useEffect(() => {
-  //   calculateValues();
-  // }, [voltage, current, resistance]);
+  useEffect(() => {
+    generateHints();
+  }, [voltage, current, resistance]);
+
+  const hasAllValues = voltage && current && resistance;
 
   return (
     <div className="App">
       <h1>Calculadora de Lei de Ohm</h1>
-      <div>
-        <label>Tensão (V): </label>
-        <input
-          type="number"
-          value={voltage}
-          onChange={(e) => {
-            if (hasAllValues) {
-              clearAll();
-            }
-            setVoltage(e.target.value);
-          }}
-          disabled={current && resistance && !hasAllValues}
-        />
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+        marginBottom: '10px',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <div>
+          <label>Tensão (V): </label>
+          <input
+            type="number"
+            value={voltage}
+            onChange={(e) => {
+              if (hasAllValues) {
+                clearAll();
+              }
+              setVoltage(e.target.value);
+            }}
+            disabled={current && resistance && !hasAllValues}
+          />
+        </div>
+        <div>
+          <label>Corrente (I): </label>
+          <input
+            type="number"
+            value={current}
+            onChange={(e) => {
+              if (hasAllValues) {
+                clearAll();
+              }
+              setCurrent(e.target.value);
+            }}
+            disabled={voltage && resistance && !hasAllValues}
+          />
+        </div>
+        <div>
+          <label>Resistência (R): </label>
+          <input
+            type="number"
+            value={resistance}
+            onChange={(e) => {
+              if (hasAllValues) {
+                clearAll();
+              }
+              setResistance(e.target.value);
+            }}
+            disabled={voltage && current && !hasAllValues}
+          />
+        </div>
+        <div style={{
+          display: 'flex',
+          gap: '10px',
+          width: '100px',
+          justifyContent: 'space-between',
+        }}>
+          <button
+            style={{
+              cursor: 'pointer',
+            }}
+          onClick={calculateValues}>Calcular</button>
+          <button
+            style={{
+              cursor: 'pointer',
+            }}
+          onClick={clearAll}>Limpar</button>
+        </div>
       </div>
-      <div>
-        <label>Corrente (I): </label>
-        <input
-          type="number"
-          value={current}
-          onChange={(e) => {
-            if (hasAllValues) {
-              clearAll();
-            }
-            setCurrent(e.target.value);
-          }}
-          disabled={voltage && resistance && !hasAllValues}
-        />
-      </div>
-      <div>
-        <label>Resistência (R): </label>
-        <input
-          type="number"
-          value={resistance}
-          onChange={(e) => {
-            if (hasAllValues) {
-              clearAll();
-            }
-            setResistance(e.target.value);
-          }}
-          disabled={voltage && current && !hasAllValues}
-        />
-      </div>
-      <button onClick={calculateValues}>Calcular</button>
-      <button onClick={clearAll}>Limpar</button>
+
       <div>
         <h2>Resultado:</h2>
         <p>{result}</p>
@@ -129,6 +164,14 @@ function App() {
             </div>
           </strong>
         </p>
+      </div>
+      <div>
+        <h2>Dicas:</h2>
+        {
+          hints.map((hint, index) => (
+            <p key={index}>{hint}</p>
+          ))
+        }
       </div>
     </div>
   );
