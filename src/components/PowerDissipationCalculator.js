@@ -87,6 +87,84 @@ function PowerDissipationCalculator() {
         <h3>Resultado:</h3>
         <p>{result}</p>
       </div>
+      <div>
+        <h3>Possíveis fórmulas:</h3>
+        <strong style={{ fontSize: '24px', fontWeight: 'bold', color: '#007bff' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '5px',
+            width: '100%',
+          }}>
+            <div>P</div>
+            <div>=</div>
+            <div
+              style={{
+                color: `${voltage ? '#007bff' : 'gray'}`,
+              }}
+            >V</div>
+            <div>×</div>
+            <div
+              style={{
+                color: `${current ? '#007bff' : 'gray'}`,
+              }}
+            >I</div>
+          </div>
+        </strong>
+        <strong style={{ fontSize: '24px', fontWeight: 'bold', color: '#007bff' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '5px',
+            width: '100%',
+          }}>
+            <div>P</div>
+            <div>=</div>
+            <div
+              style={{
+                color: `${current ? '#007bff' : 'gray'}`,
+              }}
+            >I</div>
+            <div>²</div>
+            <div>×</div>
+            <div
+              style={{
+                color: `${resistance ? '#007bff' : 'gray'}`,
+              }}
+            >R</div>
+          </div>
+        </strong>
+        <strong style={{ fontSize: '24px', fontWeight: 'bold', color: '#007bff' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '5px',
+            width: '100%',
+          }}>
+            <div>P</div>
+            <div>=</div>
+            <div
+              style={{
+                color: `${voltage ? '#007bff' : 'gray'}`,
+              }}
+            >V</div>
+            <div
+              style={{
+                color: `${voltage ? '#007bff' : 'gray'}`,
+              }}
+            >²</div>
+            <div>÷</div>
+            <div
+              style={{
+                color: `${resistance ? '#007bff' : 'gray'}`,
+              }}
+            >R</div>
+          </div>
+        </strong>
+      </div>
     </div>
   );
 }
